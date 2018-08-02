@@ -1,12 +1,9 @@
 (function () {
 	console.log('bonjour');
-	/*
-	 * Create a list that holds all of your cards
-	 */
 
 	const cardsDeck = document.querySelector('.deck');
 
-	// create array from child li elements of deck class
+	// creates array from child li elements of deck class
 	const cardsArray = [...document.querySelectorAll('.deck li')];
 
 	/*
@@ -16,10 +13,10 @@
 	 *   - add each card's HTML to the page
 	 */
 
-	// TODO: use doc fragment?
 	function displayCards() {
 		shuffle(cardsArray).forEach(function (card) {
 			cardsDeck.appendChild(card);
+			// TODO: use doc fragment?
 		});
 	}
 
@@ -52,14 +49,17 @@
 	 *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
 	 */
 
-	// listen for clicks on child 'li' elements (cards) of 'deck' class that have class of 'card'
+	// listens for clicks on child 'li' elements (cards) of 'deck' class that have class of 'card'
 	cardsDeck.addEventListener('click', function (e) {
 		if (e.target.classList.contains('card')) {
+
+			// hides or displays clicked card
 			toggleCards(e);
 			console.log('card click');
 		}
 	});
 
+	// toggles class of target card
 	function toggleCards(e) {
 		e.target.classList.toggle('open');
 		e.target.classList.toggle('show');
