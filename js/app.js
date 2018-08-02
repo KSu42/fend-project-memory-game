@@ -55,8 +55,14 @@
 	// listen for clicks on child 'li' elements (cards) of 'deck' class that have class of 'card'
 	cardsDeck.addEventListener('click', function (e) {
 		if (e.target.classList.contains('card')) {
+			toggleCards(e);
 			console.log('card click');
 		}
 	});
+
+	function toggleCards(e) {
+		e.target.classList.toggle('open');
+		e.target.classList.toggle('show');
+	}
 
 })();
