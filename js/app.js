@@ -65,7 +65,6 @@
 	// toggles class of target card
 	function toggleCards(e) {
 		e.target.classList.toggle('open');
-		e.target.classList.toggle('show');
 	}
 
 })();
