@@ -67,4 +67,8 @@
 		e.target.classList.toggle('open');
 	}
 
+	const resetButton = document.querySelector('.fa-repeat');
+	resetButton.addEventListener('click', function () {
+		location.reload();
+	});
 })();
