@@ -21,7 +21,6 @@
 		shuffle(cardsArray).forEach(function (card) {
 			cardsDeck.appendChild(card);
 		});
-
 	}
 
 	displayCards();
@@ -53,5 +52,11 @@
 	 *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
 	 */
 
+	// listen for clicks on child 'li' elements (cards) of 'deck' class that have class of 'card'
+	cardsDeck.addEventListener('click', function (e) {
+		if (e.target.classList.contains('card')) {
+			console.log('card click');
+		}
+	});
 
 })();
