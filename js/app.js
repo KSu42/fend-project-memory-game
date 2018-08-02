@@ -53,22 +53,26 @@
 	 */
 
 	// listens for clicks on child 'li' elements (cards) of 'deck' class that have class of 'card'
-	cardsDeck.addEventListener('click', function (e) {
-		if (e.target.classList.contains('card')) {
-
-			// hides or displays clicked card
-			toggleCards(e);
+	cardsDeck.addEventListener('click', function (card) {
+		if (card.target.classList.contains('card') && openCards.length < 2) {
 			console.log('card click');
+			toggleCards(card);
+			addToOpenCards(card);
 		}
 	});
 
 	// toggles class of target card
-	function toggleCards(e) {
-		e.target.classList.toggle('open');
+	function toggleCards(card) {
+		card.target.classList.toggle('open');
 	}
 
 	const resetButton = document.querySelector('.fa-repeat');
 	resetButton.addEventListener('click', function () {
 		location.reload();
 	});
+
+	const openCards = [];
+	function addToOpenCards(card) {
+		openCards.push(card);
+	}
 })();
