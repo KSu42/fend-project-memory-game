@@ -16,10 +16,11 @@
 	 */
 
 	function displayCards() {
+		const frag = document.createDocumentFragment();
 		shuffle(cardsArray).forEach(function (card) {
-			cardsDeck.appendChild(card);
-			// TODO: use doc fragment?
+			frag.appendChild(card);
 		});
+		cardsDeck.appendChild(frag);
 	}
 
 	displayCards();
