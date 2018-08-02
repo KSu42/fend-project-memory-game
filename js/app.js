@@ -1,9 +1,11 @@
 (function () {
+	// DOM is ready
 	console.log('bonjour');
 
+	// stores first element matching '.deck' into a constant
 	const cardsDeck = document.querySelector('.deck');
 
-	// creates array from child li elements of deck class
+	// creates array from nodelist of all child li elements of deck class
 	const cardsArray = [...document.querySelectorAll('.deck li')];
 
 	/*
