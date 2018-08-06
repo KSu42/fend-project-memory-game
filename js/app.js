@@ -13,7 +13,7 @@ let moves = 0;
 const movesDisplay = document.querySelector('.moves');
 movesDisplay.textContent = moves + ' Moves';
 
-const starsDisplay = document.querySelector('.stars');
+const starDisplay = document.querySelector('.stars');
 let starCounter = 10;
 /*
  * Display the cards on the page
@@ -141,7 +141,7 @@ function movesUp() {
 function starDown() {
 	starCounter--;
 	if (starCounter % 2 !== 1) {
-		starsDisplay.firstElementChild.remove();
+		starDisplay.firstElementChild.remove();
 	}
 }
 
