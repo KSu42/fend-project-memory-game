@@ -8,6 +8,10 @@ const cardsArray = [...document.querySelectorAll('.deck li')];
 
 let openCards = [];
 let matchedCards = [];
+
+let moves = 6;
+const movesText = document.querySelector('.moves');
+movesText.textContent = moves;
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -21,6 +25,11 @@ function displayCards() {
 		frag.appendChild(card);
 	});
 	cardsDeck.appendChild(frag);
+	setTimeout(function () {
+		cardsArray.forEach(function (card) {
+			card.classList.toggle('open');
+		});
+	}, 4000);
 }
 
 displayCards();
@@ -55,7 +64,13 @@ function shuffle(array) {
 // listens for clicks on child 'li' elements (cards) of 'deck' class that have class of 'card'
 cardsDeck.addEventListener('click', function (card) {
 	const clickedCard = card.target;
-	if (clickedCard.classList.contains('card') && openCards.length < 2 && !openCards.includes(clickedCard) && !matchedCards.includes(clickedCard)) {
+	if (
+		clickedCard.classList.contains('card') &&
+		openCards.length < 2 &&
+		!openCards.includes(clickedCard) &&
+		!matchedCards.includes(clickedCard) &&
+		moves > 0
+	) {
 		toggleOpen(clickedCard);
 		addToOpenCards(clickedCard);
 		if (openCards.length == 2) {
@@ -95,12 +110,14 @@ function checkCards() {
 			toggleMatch(clickedCard);
 		});
 		openCards = [];
-
 	} else {
 		console.log('try again!');
 		setTimeout(function () {
 			hideOpenCards();
 		}, 1500);
+		moves--;
+		movesText.textContent = moves;
+		console.log('moves left: ' + moves);
 	}
 }
 
