@@ -12,6 +12,7 @@ let matchedCards = [];
 let moves = 6;
 const movesText = document.querySelector('.moves');
 movesText.textContent = moves;
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -115,9 +116,7 @@ function checkCards() {
 		setTimeout(function () {
 			hideOpenCards();
 		}, 1500);
-		moves--;
-		movesText.textContent = moves;
-		console.log('moves left: ' + moves);
+		movesDown();
 	}
 }
 
@@ -126,4 +125,10 @@ function hideOpenCards() {
 		toggleOpen(clickedCard);
 	});
 	openCards = [];
+}
+
+function movesDown() {
+	moves--;
+	movesText.textContent = moves;
+	console.log('moves left: ' + moves);
 }
