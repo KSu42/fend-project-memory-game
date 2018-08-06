@@ -9,12 +9,12 @@ const cardsArray = [...document.querySelectorAll('.deck li')];
 let openCards = [];
 let matchedCards = [];
 
-let moves = 6;
-const movesText = document.querySelector('.moves');
-movesText.textContent = moves;
+let moves = 0;
+const movesDisplay = document.querySelector('.moves');
+movesDisplay.textContent = moves;
 
-const stars = document.querySelector('.stars');
-
+const starsDisplay = document.querySelector('.stars');
+let starCounter = 10;
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -72,17 +72,17 @@ cardsDeck.addEventListener('click', function (card) {
 		openCards.length < 2 &&
 		!openCards.includes(clickedCard) &&
 		!matchedCards.includes(clickedCard) &&
-		moves > 0
+		starCounter > 0
 	) {
 		toggleOpen(clickedCard);
 		addToOpenCards(clickedCard);
 		if (openCards.length == 2) {
+			movesUp();
 			checkCards();
 		}
 	}
 });
 
-// toggles class of target card
 function toggleOpen(clickedCard) {
 	clickedCard.classList.toggle('open');
 }
@@ -118,7 +118,7 @@ function checkCards() {
 		setTimeout(function () {
 			hideOpenCards();
 		}, 1500);
-		movesDown();
+		starDown();
 	}
 }
 
@@ -129,12 +129,18 @@ function hideOpenCards() {
 	openCards = [];
 }
 
-function movesDown() {
-	moves--;
-	movesText.textContent = moves;
-	console.log('moves left: ' + moves);
-	if (moves % 2 !== 1) {
-		stars.firstElementChild.remove();
-		console.log('lost a star!');
+function movesUp() {
+	moves++;
+	movesDisplay.textContent = moves;
+}
+
+function starDown() {
+	starCounter--;
+	if (starCounter % 2 !== 1) {
+		starsDisplay.firstElementChild.remove();
 	}
 }
+
+// TODO: timer
+
+// TODO: game end modal
