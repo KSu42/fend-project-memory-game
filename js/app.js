@@ -13,6 +13,8 @@ let moves = 6;
 const movesText = document.querySelector('.moves');
 movesText.textContent = moves;
 
+const stars = document.querySelector('.stars');
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -131,4 +133,8 @@ function movesDown() {
 	moves--;
 	movesText.textContent = moves;
 	console.log('moves left: ' + moves);
+	if (moves % 2 !== 1) {
+		stars.firstElementChild.remove();
+		console.log('lost a star!');
+	}
 }
