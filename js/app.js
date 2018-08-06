@@ -11,7 +11,7 @@ let matchedCards = [];
 
 let moves = 0;
 const movesDisplay = document.querySelector('.moves');
-movesDisplay.textContent = moves;
+movesDisplay.textContent = moves + ' Moves';
 
 const starsDisplay = document.querySelector('.stars');
 let starCounter = 10;
@@ -117,7 +117,7 @@ function checkCards() {
 		console.log('try again!');
 		setTimeout(function () {
 			hideOpenCards();
-		}, 1500);
+		}, 1200);
 		starDown();
 	}
 }
@@ -131,7 +131,11 @@ function hideOpenCards() {
 
 function movesUp() {
 	moves++;
-	movesDisplay.textContent = moves;
+	if (moves == 1) {
+		movesDisplay.textContent = moves + ' Move';
+	} else {
+		movesDisplay.textContent = moves + ' Moves';
+	}
 }
 
 function starDown() {
