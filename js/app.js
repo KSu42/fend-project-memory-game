@@ -36,6 +36,7 @@ function displayCards() {
 }
 
 displayCards();
+// timer();
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -146,5 +147,11 @@ function starDown() {
 }
 
 // TODO: timer
+// let seconds = 0;
+// let minutes = 0;
+
+// function timer() {
+// 	setInterval(seconds++, 1000);
+// }
 
 // TODO: game end modal
