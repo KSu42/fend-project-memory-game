@@ -15,6 +15,7 @@ movesDisplay.textContent = moves + ' Moves';
 
 const starDisplay = document.querySelector('.stars');
 let starCounter = 10;
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -36,7 +37,6 @@ function displayCards() {
 }
 
 displayCards();
-// timer();
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -147,11 +147,22 @@ function starDown() {
 }
 
 // TODO: timer
-// let seconds = 0;
-// let minutes = 0;
+let seconds = 0;
+let minutes = 0;
 
-// function timer() {
-// 	setInterval(seconds++, 1000);
-// }
+let timerInterval;
+
+function timerStart() {
+	timerInterval = setInterval(function () {
+		seconds++;
+		console.log(seconds);
+	}, 1000);
+}
+
+function timerStop() {
+	clearInterval(timerInterval);
+}
+
+// timerStart();
 
 // TODO: game end modal
