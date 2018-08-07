@@ -14,10 +14,10 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    padding-top: 10px;
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
     font-family: 'Coda', cursive;
 }
 
@@ -87,24 +87,29 @@ h1 {
  */
 
 .score-panel {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
     text-align: left;
-    width: 345px;
+    width: 600px;
     margin-bottom: 10px;
 }
 
 .score-panel .stars {
     margin: 0;
     padding: 0;
-    display: inline-block;
+    display: flex;
     margin: 0 5px 0 0;
+    font-size: 25px;
 }
 
 .score-panel .stars li {
     list-style: none;
-    display: inline-block;
+    display: flex;
 }
 
 .score-panel .restart {
-    float: right;
+    display: flex;
     cursor: pointer;
+    font-size: 25px;
 }
