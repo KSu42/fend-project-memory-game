@@ -33,10 +33,9 @@ function displayCards() {
 		cardsArray.forEach(function (card) {
 			card.classList.toggle('open');
 		});
+		timeStart();
 	}, 4000);
 }
-
-displayCards();
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -146,23 +145,39 @@ function starDown() {
 	}
 }
 
-// TODO: timer
-let seconds = 0;
-let minutes = 0;
+let totalSeconds = 0;
+let seconds = Math.floor(totalSeconds % 60);
+let minutes = Math.floor(totalSeconds / 60);
+let timeInterval;
 
-let timerInterval;
-
-function timerStart() {
-	timerInterval = setInterval(function () {
-		seconds++;
-		console.log(seconds);
+function timeStart() {
+	timeInterval = setInterval(function () {
+		++totalSeconds;
+		displayTime();
 	}, 1000);
 }
 
-function timerStop() {
-	clearInterval(timerInterval);
+function timeStop() {
+	clearInterval(timeInterval);
 }
 
-// timerStart();
+//TODO: stop timer after game ends
+const timeDisplay = document.querySelector('.time');
+timeDisplay.innerHTML = `Time ${minutes}:0${seconds}`;
+
+function displayTime() {
+	seconds = Math.floor(totalSeconds % 60);
+	minutes = Math.floor(totalSeconds / 60);
+	if (seconds < 10) {
+		timeDisplay.innerHTML = `Time ${minutes}:0${seconds}`;
+	} else {
+		timeDisplay.innerHTML = `Time ${minutes}:${seconds}`;
+	}
+}
 
 // TODO: game end modal
+
+
+
+// game init
+displayCards();
