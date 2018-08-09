@@ -94,8 +94,12 @@ function toggleMatch(clickedCard) {
 
 const resetButton = document.querySelector('.fa-repeat');
 resetButton.addEventListener('click', function () {
-	location.reload();
+	resetGame();
 });
+
+function resetGame() {
+	location.reload();
+}
 
 function addToOpenCards(clickedCard) {
 	openCards.push(clickedCard);
@@ -105,6 +109,7 @@ function addToMatchedCards(clickedCard) {
 	matchedCards.push(clickedCard);
 	if (matchedCards.length == 16) {
 		timeStop();
+		setTimeout(gameWonModal, 100);
 	}
 }
 
@@ -120,7 +125,7 @@ function checkCards() {
 		console.log('try again!');
 		setTimeout(function () {
 			hideOpenCards();
-		}, 1200);
+		}, 500);
 		starDown();
 	}
 }
@@ -148,6 +153,7 @@ function starDown() {
 	}
 	if (starCounter == 0) {
 		timeStop();
+		setTimeout(gameLostModal, 100);
 	}
 }
 
@@ -158,7 +164,7 @@ let timeInterval;
 
 function timeStart() {
 	timeInterval = setInterval(function () {
-		++totalSeconds;
+		totalSeconds++;
 		displayTime();
 	}, 1000);
 }
@@ -182,8 +188,29 @@ function displayTime() {
 }
 
 // TODO: game end modal
+let modalStars;
+let modalTime;
+function gameWonModal() {
+	if (seconds < 10) {
+		modalTime = `${minutes}:0${seconds}`;
+	} else {
+		modalTime = `${minutes}:${seconds}`;
+	}
+	if (starDisplay.childElementCount == 1) {
+		modalStars = `${starDisplay.childElementCount} star`;
+	} else {
+		modalStars = `${starDisplay.childElementCount} stars`;
+	}
+	const modalDisplay = `You've won! You finished with ${modalStars} in ${modalTime}. Do you want to play again?`;
+	alert(modalDisplay);
+	resetGame();
+}
 
-
+function gameLostModal() {
+	const modal = `You've lost. Do you want to try again?`;
+	alert(modal);
+	resetGame();
+}
 
 // game init
 displayCards();
