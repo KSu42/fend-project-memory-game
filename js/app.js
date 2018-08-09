@@ -103,6 +103,9 @@ function addToOpenCards(clickedCard) {
 
 function addToMatchedCards(clickedCard) {
 	matchedCards.push(clickedCard);
+	if (matchedCards.length == 16) {
+		timeStop();
+	}
 }
 
 function checkCards() {
@@ -142,6 +145,9 @@ function starDown() {
 	starCounter--;
 	if (starCounter % 2 !== 1) {
 		starDisplay.firstElementChild.remove();
+	}
+	if (starCounter == 0) {
+		timeStop();
 	}
 }
 
