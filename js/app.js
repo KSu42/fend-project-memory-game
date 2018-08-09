@@ -173,13 +173,12 @@ function timeStop() {
 	clearInterval(timeInterval);
 }
 
-//TODO: stop timer after game ends
 const timeDisplay = document.querySelector('.time');
 timeDisplay.innerHTML = `Time ${minutes}:0${seconds}`;
 
 function displayTime() {
-	seconds = Math.floor(totalSeconds % 60);
-	minutes = Math.floor(totalSeconds / 60);
+	seconds = totalSeconds % 60;
+	minutes = parseInt(totalSeconds / 60);
 	if (seconds < 10) {
 		timeDisplay.innerHTML = `Time ${minutes}:0${seconds}`;
 	} else {
@@ -187,9 +186,9 @@ function displayTime() {
 	}
 }
 
-// TODO: game end modal
 let modalStars;
 let modalTime;
+
 function gameWonModal() {
 	if (seconds < 10) {
 		modalTime = `${minutes}:0${seconds}`;
