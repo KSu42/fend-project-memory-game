@@ -24,6 +24,7 @@ function displayCards() {
 			card.classList.toggle('open');
 		});
 		timeStart();
+		audioStraightUp.play();
 	}, 4000);
 }
 
@@ -86,26 +87,33 @@ function addToOpenCards(clickedCard) {
 
 function addToMatchedCards(clickedCard) {
 	matchedCards.push(clickedCard);
+	toggleMatch(clickedCard);
 
 	// checks for game win
 	if (matchedCards.length == 16) {
 		timeStop();
-		setTimeout(gameWonModal, 100);
+		setTimeout(gameWonModal, 200);
 	}
 }
 
 function checkCards() {
 	if (openCards[0].firstElementChild.className === openCards[1].firstElementChild.className) {
-		openCards.forEach(function (clickedCard) {
-			addToMatchedCards(clickedCard);
-			toggleMatch(clickedCard);
-		});
-		openCards = [];
+		if (matchedCards.length < 14) {
+			audioDope.play();
+		} else {
+			audioItsLit.play();
+		}
+		setTimeout(function () {
+			openCards.forEach(function (clickedCard) {
+				addToMatchedCards(clickedCard);
+			});
+			openCards = [];
+		}, 1200);
 	} else {
+		starDown();
 		setTimeout(function () {
 			hideOpenCards();
 		}, 500);
-		starDown();
 	}
 }
 
@@ -138,10 +146,16 @@ function starDown() {
 	// removes a star every 2 mismatches
 	if (starCounter % 2 !== 1) {
 		starDisplay.firstElementChild.remove();
+		if (starCounter > 0) {
+			audioSkrt.play();
+		}
+	} else {
+		audioOhh.play();
 	}
 
 	// checks for game loss
 	if (starCounter == 0) {
+		audioStraightUpTwo.play();
 		timeStop();
 		setTimeout(gameLostModal, 100);
 	}
@@ -200,6 +214,14 @@ function gameLostModal() {
 	alert(modal);
 	resetGame();
 }
+
+// Sound FX - credit to Travis Scott
+let audioDope = new Audio('/media/travis_scott_dope.mp3');
+let audioItsLit = new Audio('/media/travis_scott_its_lit.mp3');
+let audioOhh = new Audio('/media/travis_scott_ohh.mp3');
+let audioSkrt = new Audio('/media/travis_scott_skrt.mp3');
+let audioStraightUp = new Audio('/media/travis_scott_straight_up.mp3');
+let audioStraightUpTwo = new Audio('/media/travis_scott_straight_up_two.mp3');
 
 // game init
 displayCards();
