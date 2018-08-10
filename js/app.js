@@ -216,12 +216,12 @@ function gameLostModal() {
 }
 
 // Sound FX - credit to Travis Scott
-let audioDope = new Audio('/media/travis_scott_dope.mp3');
-let audioItsLit = new Audio('/media/travis_scott_its_lit.mp3');
-let audioOhh = new Audio('/media/travis_scott_ohh.mp3');
-let audioSkrt = new Audio('/media/travis_scott_skrt.mp3');
-let audioStraightUp = new Audio('/media/travis_scott_straight_up.mp3');
-let audioStraightUpTwo = new Audio('/media/travis_scott_straight_up_two.mp3');
+let audioDope = new Audio('../media/travis_scott_dope.mp3');
+let audioItsLit = new Audio('../media/travis_scott_its_lit.mp3');
+let audioOhh = new Audio('../media/travis_scott_ohh.mp3');
+let audioSkrt = new Audio('../media/travis_scott_skrt.mp3');
+let audioStraightUp = new Audio('../media/travis_scott_straight_up.mp3');
+let audioStraightUpTwo = new Audio('../media/travis_scott_straight_up_two.mp3');
 
 // game init
 displayCards();
