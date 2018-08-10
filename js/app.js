@@ -1,5 +1,3 @@
-console.log('bonjour');
-
 // stores first element matching '.deck' into a constant
 const cardsDeck = document.querySelector('.deck');
 
@@ -9,26 +7,18 @@ const cardsArray = [...document.querySelectorAll('.deck li')];
 let openCards = [];
 let matchedCards = [];
 
-let moves = 0;
-const movesDisplay = document.querySelector('.moves');
-movesDisplay.textContent = moves + ' Moves';
-
-const starDisplay = document.querySelector('.stars');
-let starCounter = 10;
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
 function displayCards() {
+	
+	// shuffles cards and stores them in a document fragment
 	const frag = document.createDocumentFragment();
 	shuffle(cardsArray).forEach(function (card) {
 		frag.appendChild(card);
 	});
+	
+	// appends the fragment (shuffled cards) to the deck 
 	cardsDeck.appendChild(frag);
+
+	// hides all cards and starts timer after a 4 second sneak-peek
 	setTimeout(function () {
 		cardsArray.forEach(function (card) {
 			card.classList.toggle('open');
@@ -52,17 +42,6 @@ function shuffle(array) {
 
 	return array;
 }
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
 
 // listens for clicks on child 'li' elements (cards) of 'deck' class that have class of 'card'
 cardsDeck.addEventListener('click', function (card) {
@@ -107,6 +86,8 @@ function addToOpenCards(clickedCard) {
 
 function addToMatchedCards(clickedCard) {
 	matchedCards.push(clickedCard);
+
+	// checks for game win
 	if (matchedCards.length == 16) {
 		timeStop();
 		setTimeout(gameWonModal, 100);
@@ -115,14 +96,12 @@ function addToMatchedCards(clickedCard) {
 
 function checkCards() {
 	if (openCards[0].firstElementChild.className === openCards[1].firstElementChild.className) {
-		console.log('match!');
 		openCards.forEach(function (clickedCard) {
 			addToMatchedCards(clickedCard);
 			toggleMatch(clickedCard);
 		});
 		openCards = [];
 	} else {
-		console.log('try again!');
 		setTimeout(function () {
 			hideOpenCards();
 		}, 500);
@@ -137,6 +116,10 @@ function hideOpenCards() {
 	openCards = [];
 }
 
+let moves = 0;
+const movesDisplay = document.querySelector('.moves');
+movesDisplay.textContent = moves + ' Moves';
+
 function movesUp() {
 	moves++;
 	if (moves == 1) {
@@ -146,11 +129,18 @@ function movesUp() {
 	}
 }
 
+const starDisplay = document.querySelector('.stars');
+let starCounter = 10;
+
 function starDown() {
 	starCounter--;
+
+	// removes a star every 2 mismatches
 	if (starCounter % 2 !== 1) {
 		starDisplay.firstElementChild.remove();
 	}
+
+	// checks for game loss
 	if (starCounter == 0) {
 		timeStop();
 		setTimeout(gameLostModal, 100);
@@ -158,8 +148,6 @@ function starDown() {
 }
 
 let totalSeconds = 0;
-let seconds = Math.floor(totalSeconds % 60);
-let minutes = Math.floor(totalSeconds / 60);
 let timeInterval;
 
 function timeStart() {
@@ -173,6 +161,8 @@ function timeStop() {
 	clearInterval(timeInterval);
 }
 
+let seconds = Math.floor(totalSeconds % 60);
+let minutes = Math.floor(totalSeconds / 60);
 const timeDisplay = document.querySelector('.time');
 timeDisplay.innerHTML = `Time ${minutes}:0${seconds}`;
 
