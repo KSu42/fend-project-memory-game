@@ -1,20 +1,11 @@
-# Memory Game Project
+# Concentrate!
 
-## Table of Contents
+A memory matching game.
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+## How To Play
 
-## Instructions
+After clicking the Start/Restart button, you are given a 4-second sneak-peek of the cards before the timer starts and the game begins.
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+Every 2 mismatches = 1 star removed
 
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+Game ends when all cards are matched or there are no stars left.
