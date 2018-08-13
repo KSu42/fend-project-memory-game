@@ -52,7 +52,6 @@ function displayCards() {
 			card.classList.toggle('open');
 		});
 		timeStart();
-		// audioStraightUp.play();
 		play_multi_sound('audioStraightUp');
 	}, 4000);
 }
@@ -73,8 +72,6 @@ resetButton.addEventListener('click', function (e) {
 });
 
 function resetGame() {
-	// location.reload();
-
 	timeStop();
 
 	// listens for clicks on child 'li' elements (cards) of 'deck' class that have class of 'card'
@@ -96,22 +93,22 @@ function resetGame() {
 		}
 	});
 
-	// cards
+	// reset cards
 	openCards = [];
 	matchedCards = [];
 	cards.forEach(function (card) {
 		card.classList = 'card';
 	});
 
-	// time
+	// reset time
 	totalSeconds = 0;
 	displayTime();
 
-	// moves
+	// reset moves
 	moves = 0;
 	movesDisplay.textContent = moves + ' Moves';
 
-	// stars
+	// reset stars
 	starDisplay.innerHTML = `<li>
 	<i class="fa fa-star"></i>
 </li>
@@ -129,10 +126,7 @@ function resetGame() {
 </li>`;
 	starCounter = 10;
 
-	// shuffle
 	shuffleCards();
-
-	// display
 	displayCards();
 }
 
@@ -154,10 +148,8 @@ function addToMatchedCards(clickedCard) {
 function checkCards() {
 	if (openCards[0].firstElementChild.className === openCards[1].firstElementChild.className) {
 		if (matchedCards.length < 14) {
-			// audioDope.play();
 			play_multi_sound('audioDope');
 		} else {
-			// audioItsLit.play();
 			play_multi_sound('audioItsLit');
 		}
 		openCards.forEach(function (clickedCard) {
@@ -202,17 +194,14 @@ function starDown() {
 	if (starCounter % 2 !== 1) {
 		starDisplay.firstElementChild.remove();
 		if (starCounter > 0) {
-			// audioSkrt.play();
 			play_multi_sound('audioSkrt');
 		}
 	} else {
-		// audioOhh.play();
 		play_multi_sound('audioOhh');
 	}
 
 	// checks for game loss
 	if (starCounter == 0) {
-		// audioStraightUpTwo.play();
 		play_multi_sound('audioStraightUpTwo');
 		timeStop();
 		setTimeout(gameLostModal, 100);
