@@ -111,5 +111,24 @@ h1 {
 .score-panel .restart {
     display: flex;
     cursor: pointer;
-    font-size: 25px;
+    font-size: 30px;
+}
+
+.neonEffect:hover {
+    text-shadow:
+        0 0 10px rgba(255,255,255,1) ,
+        0 0 20px rgba(255,255,255,1) ,
+        0 0 30px rgba(255,255,255,1) ,
+        0 0 40px #00ffff , 0 0 70px #00ffff ,
+        0 0 80px #00ffff , 0 0 100px #00ffff ;
+}
+
+.smallFont {
+    font: normal 15px/normal "Monoton", Helvetica, sans-serif;
+}
+
+.submitStyle {
+    border-radius: 8px;
+    border: 2px solid black;
+    padding: 4px;
 }

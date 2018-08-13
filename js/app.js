@@ -1,31 +1,28 @@
+// preload first sound
+document.getElementById('audioItsLit').load();
+
 // stores first element matching '.deck' into a constant
 const cardsDeck = document.querySelector('.deck');
 
+// stores all child li elements of deck class
+const cards = document.querySelectorAll('.deck li');
+
 // creates array from nodelist of all child li elements of deck class
-const cardsArray = [...document.querySelectorAll('.deck li')];
+const cardsArray = [...cards];
 
 let openCards = [];
 let matchedCards = [];
 
-function displayCards() {
-	
+function shuffleCards() {
+
 	// shuffles cards and stores them in a document fragment
 	const frag = document.createDocumentFragment();
 	shuffle(cardsArray).forEach(function (card) {
 		frag.appendChild(card);
 	});
-	
+
 	// appends the fragment (shuffled cards) to the deck 
 	cardsDeck.appendChild(frag);
-
-	// hides all cards and starts timer after a 4 second sneak-peek
-	setTimeout(function () {
-		cardsArray.forEach(function (card) {
-			card.classList.toggle('open');
-		});
-		timeStart();
-		audioStraightUp.play();
-	}, 4000);
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -43,25 +40,22 @@ function shuffle(array) {
 
 	return array;
 }
+// shows all cards for a 4 second sneak-peek then hides them
+function displayCards() {
+	cards.forEach(function (card) {
+		card.classList.toggle('open');
+	});
 
-// listens for clicks on child 'li' elements (cards) of 'deck' class that have class of 'card'
-cardsDeck.addEventListener('click', function (card) {
-	const clickedCard = card.target;
-	if (
-		clickedCard.classList.contains('card') &&
-		openCards.length < 2 &&
-		!openCards.includes(clickedCard) &&
-		!matchedCards.includes(clickedCard) &&
-		starCounter > 0
-	) {
-		toggleOpen(clickedCard);
-		addToOpenCards(clickedCard);
-		if (openCards.length == 2) {
-			movesUp();
-			checkCards();
-		}
-	}
-});
+	// hides all cards and starts timer after a 4 second sneak-peek
+	setTimeout(function () {
+		cards.forEach(function (card) {
+			card.classList.toggle('open');
+		});
+		timeStart();
+		// audioStraightUp.play();
+		play_multi_sound('audioItsLit');
+	}, 4000);
+}
 
 function toggleOpen(clickedCard) {
 	clickedCard.classList.toggle('open');
@@ -72,13 +66,74 @@ function toggleMatch(clickedCard) {
 	clickedCard.classList.toggle('match');
 }
 
-const resetButton = document.querySelector('.fa-repeat');
-resetButton.addEventListener('click', function () {
+const resetButton = document.querySelector('.startButton');
+resetButton.addEventListener('click', function (e) {
+	e.preventDefault();
 	resetGame();
 });
 
 function resetGame() {
-	location.reload();
+	// location.reload();
+
+	timeStop();
+
+	// listens for clicks on child 'li' elements (cards) of 'deck' class that have class of 'card'
+	cardsDeck.addEventListener('click', function (card) {
+		const clickedCard = card.target;
+		if (
+			clickedCard.classList.contains('card') &&
+			openCards.length < 2 &&
+			!openCards.includes(clickedCard) &&
+			!matchedCards.includes(clickedCard) &&
+			starCounter > 0
+		) {
+			toggleOpen(clickedCard);
+			addToOpenCards(clickedCard);
+			if (openCards.length == 2) {
+				movesUp();
+				checkCards();
+			}
+		}
+	});
+
+	// cards
+	openCards = [];
+	matchedCards = [];
+	cards.forEach(function (card) {
+		card.classList = 'card';
+	});
+
+	// time
+	totalSeconds = 0;
+	displayTime();
+
+	// moves
+	moves = 0;
+	movesDisplay.textContent = moves + ' Moves';
+
+	// stars
+	starDisplay.innerHTML = `<li>
+	<i class="fa fa-star"></i>
+</li>
+<li>
+	<i class="fa fa-star"></i>
+</li>
+<li>
+	<i class="fa fa-star"></i>
+</li>
+<li>
+	<i class="fa fa-star"></i>
+</li>
+<li>
+	<i class="fa fa-star"></i>
+</li>`;
+	starCounter = 10;
+
+	// shuffle
+	shuffleCards();
+
+	// display
+	displayCards();
 }
 
 function addToOpenCards(clickedCard) {
@@ -99,16 +154,16 @@ function addToMatchedCards(clickedCard) {
 function checkCards() {
 	if (openCards[0].firstElementChild.className === openCards[1].firstElementChild.className) {
 		if (matchedCards.length < 14) {
-			audioDope.play();
+			// audioDope.play();
+			play_multi_sound('audioDope');
 		} else {
-			audioItsLit.play();
+			// audioItsLit.play();
+			play_multi_sound('audioItsLit');
 		}
-		setTimeout(function () {
-			openCards.forEach(function (clickedCard) {
-				addToMatchedCards(clickedCard);
-			});
-			openCards = [];
-		}, 1200);
+		openCards.forEach(function (clickedCard) {
+			addToMatchedCards(clickedCard);
+		});
+		openCards = [];
 	} else {
 		starDown();
 		setTimeout(function () {
@@ -147,15 +202,18 @@ function starDown() {
 	if (starCounter % 2 !== 1) {
 		starDisplay.firstElementChild.remove();
 		if (starCounter > 0) {
-			audioSkrt.play();
+			// audioSkrt.play();
+			play_multi_sound('audioSkrt');
 		}
 	} else {
-		audioOhh.play();
+		// audioOhh.play();
+		play_multi_sound('audioOhh');
 	}
 
 	// checks for game loss
 	if (starCounter == 0) {
-		audioStraightUpTwo.play();
+		// audioStraightUpTwo.play();
+		play_multi_sound('audioStraightUpTwo');
 		timeStop();
 		setTimeout(gameLostModal, 100);
 	}
@@ -215,13 +273,24 @@ function gameLostModal() {
 	resetGame();
 }
 
-// Sound FX - credit to Travis Scott
-let audioDope = new Audio('../media/travis_scott_dope.mp3');
-let audioItsLit = new Audio('../media/travis_scott_its_lit.mp3');
-let audioOhh = new Audio('../media/travis_scott_ohh.mp3');
-let audioSkrt = new Audio('../media/travis_scott_skrt.mp3');
-let audioStraightUp = new Audio('../media/travis_scott_straight_up.mp3');
-let audioStraightUpTwo = new Audio('../media/travis_scott_straight_up_two.mp3');
+// multi channel audio from http://www.storiesinflight.com/html5/audio.html
+var channel_max = 6; // number of channels
+let audiochannels = new Array();
+for (let a = 0; a < channel_max; a++) { // prepare the channels
+	audiochannels[a] = new Array();
+	audiochannels[a].channel = new Audio(); // create a new audio object
+	audiochannels[a].finished = -1; // expected end time for this channel
+}
 
-// game init
-displayCards();
+function play_multi_sound(snd) {
+	for (let a = 0; a < audiochannels.length; a++) {
+		let thistime = new Date();
+		if (audiochannels[a].finished < thistime.getTime()) { // is this channel finished?
+			audiochannels[a].finished = thistime.getTime() + document.getElementById(snd).duration * 1000;
+			audiochannels[a].channel.src = document.getElementById(snd).src;
+			audiochannels[a].channel.load();
+			audiochannels[a].channel.play();
+			break;
+		}
+	}
+}
