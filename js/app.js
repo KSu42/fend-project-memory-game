@@ -1,5 +1,5 @@
 // preload first sound
-document.getElementById('audioItsLit').load();
+document.getElementById('audioStraightUp').load();
 
 // stores first element matching '.deck' into a constant
 const cardsDeck = document.querySelector('.deck');
@@ -53,7 +53,7 @@ function displayCards() {
 		});
 		timeStart();
 		// audioStraightUp.play();
-		play_multi_sound('audioItsLit');
+		play_multi_sound('audioStraightUp');
 	}, 4000);
 }
 
@@ -147,7 +147,7 @@ function addToMatchedCards(clickedCard) {
 	// checks for game win
 	if (matchedCards.length == 16) {
 		timeStop();
-		setTimeout(gameWonModal, 200);
+		setTimeout(gameWonModal, 500);
 	}
 }
 
