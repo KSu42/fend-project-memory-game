@@ -40,13 +40,12 @@ function shuffle(array) {
 
 	return array;
 }
+
 // shows all cards for a 4 second sneak-peek then hides them
 function displayCards() {
 	cards.forEach(function (card) {
 		card.classList.toggle('open');
 	});
-
-	// hides all cards and starts timer after a 4 second sneak-peek
 	setTimeout(function () {
 		cards.forEach(function (card) {
 			card.classList.toggle('open');
