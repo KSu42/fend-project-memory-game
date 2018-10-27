@@ -59,7 +59,7 @@ function displayCards() {
 			card.classList.toggle('open');
 		});
 		timeStart();
-		play_multi_sound(audio5);
+		playSounds(audio5);
 	}, 4000);
 }
 
@@ -155,9 +155,9 @@ function addToMatchedCards(clickedCard) {
 function checkCards() {
 	if (openCards[0].firstElementChild.className === openCards[1].firstElementChild.className) {
 		if (matchedCards.length < 14) {
-			play_multi_sound(audio1);
+			playSounds(audio1);
 		} else {
-			play_multi_sound(audio2);
+			playSounds(audio2);
 		}
 		openCards.forEach(function (clickedCard) {
 			addToMatchedCards(clickedCard);
@@ -201,15 +201,15 @@ function starDown() {
 	if (starCounter % 2 !== 1) {
 		starDisplay.firstElementChild.remove();
 		if (starCounter > 0) {
-			play_multi_sound(audio4);
+			playSounds(audio4);
 		}
 	} else {
-		play_multi_sound(audio3);
+		playSounds(audio3);
 	}
 
 	// checks for game loss
 	if (starCounter == 0) {
-		play_multi_sound(audio6);
+		playSounds(audio6);
 		timeStop();
 		setTimeout(gameLostModal, 100);
 	}
@@ -269,23 +269,23 @@ function gameLostModal() {
 	resetGame();
 }
 
-// multi channel audio from http://www.storiesinflight.com/html5/audio.html
-var channel_max = 6; // number of channels
-let audiochannels = new Array();
-for (let a = 0; a < channel_max; a++) { // prepare the channels
-	audiochannels[a] = new Array();
-	audiochannels[a].channel = new Audio(); // create a new audio object
-	audiochannels[a].finished = -1; // expected end time for this channel
+// multi channel audio referenced from http://www.storiesinflight.com/html5/audio.html
+let channelMax = 6; // number of channels
+let audioChannels = new Array();
+for (let a = 0; a < channelMax; a++) { // prepare the channels
+	audioChannels[a] = new Array();
+	audioChannels[a].channel = new Audio(); // create a new audio object
+	audioChannels[a].finished = -1; // expected end time for this channel
 }
 
-function play_multi_sound(snd) {
-	for (let a = 0; a < audiochannels.length; a++) {
-		let thistime = new Date();
-		if (audiochannels[a].finished < thistime.getTime()) { // is this channel finished?
-			audiochannels[a].finished = thistime.getTime() + snd.duration * 1000;
-			audiochannels[a].channel.src = snd.src;
-			audiochannels[a].channel.load();
-			audiochannels[a].channel.play();
+function playSounds(sound) {
+	for (let a = 0; a < audioChannels.length; a++) {
+		let thisTime = new Date();
+		if (audioChannels[a].finished < thisTime.getTime()) { // is this channel finished?
+			audioChannels[a].finished = thisTime.getTime() + sound.duration * 1000;
+			audioChannels[a].channel.src = sound.src;
+			audioChannels[a].channel.load();
+			audioChannels[a].channel.play();
 			break;
 		}
 	}
