@@ -290,3 +290,24 @@ function playSounds(sound) {
 		}
 	}
 }
+
+function sfxSelect(evt) {
+	switch (evt.target.value) {
+	case '2chainz':
+		audio1.src = 'media/2chainz_4.mp3';
+		audio2.src = 'media/2chainz_tellem.mp3';
+		audio3.src = 'media/2chainz_tru.mp3';
+		audio4.src = 'media/2chainz_unh3.mp3';
+		audio5.src = 'media/2chainz_whistle.mp3';
+		audio6.src = 'media/2chainz_yeah2.mp3';
+		break;
+	case 'abronson':
+		audio1.src = 'media/action_bronsolino.mp3';
+		audio2.src = 'media/action_yeah.mp3';
+		audio3.src = 'media/action_yo.mp3';
+		audio4.src = 'media/actionbronson_istme.mp3';
+		audio5.src = 'media/actionbronson_unh.mp3';
+		audio6.src = 'media/actionbronson_unh.mp3';
+		break;
+	}
+}
