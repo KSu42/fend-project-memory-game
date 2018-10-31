@@ -264,16 +264,16 @@ function gameWonModal() {
 }
 
 function gameLostModal() {
-	const modal = `You've lost. Do you want to try again?`;
+	const modal = 'You\'ve lost. Do you want to try again?';
 	alert(modal);
 	resetGame();
 }
 
 // multi channel audio referenced from http://www.storiesinflight.com/html5/audio.html
 let channelMax = 6; // number of channels
-let audioChannels = new Array();
+let audioChannels = [];
 for (let a = 0; a < channelMax; a++) { // prepare the channels
-	audioChannels[a] = new Array();
+	audioChannels[a] = [];
 	audioChannels[a].channel = new Audio(); // create a new audio object
 	audioChannels[a].finished = -1; // expected end time for this channel
 }
