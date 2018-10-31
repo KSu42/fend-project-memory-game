@@ -32,6 +32,10 @@ h1 {
     font-weight: 300;
 }
 
+select {
+    font-family: Coda, cursive;
+}
+
 /*
  * Styles for the deck of cards
  */
