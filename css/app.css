@@ -28,7 +28,7 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Coda', sans-serif;
     font-weight: 300;
 }
 
@@ -123,7 +123,7 @@ h1 {
 }
 
 .smallFont {
-    font: normal 15px/normal "Monoton", Helvetica, sans-serif;
+    font: normal 15px/normal "Coda", Helvetica, sans-serif;
 }
 
 .submitStyle {
