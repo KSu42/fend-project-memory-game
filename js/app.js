@@ -1,13 +1,3 @@
-// sounds
-let audio1 = new Audio('media/travis_scott_dope.mp3');
-let audio2 = new Audio('media/travis_scott_its_lit.mp3');
-let audio3 = new Audio('media/travis_scott_ohh.mp3');
-let audio4 = new Audio('media/travis_scott_skrt.mp3');
-let audio5 = new Audio('media/travis_scott_straight_up.mp3');
-let audio6 = new Audio('media/travis_scott_straight_up_two.mp3');
-
-// preload first sound
-audio1.load();
 
 // stores first element matching '.deck' into a constant
 const cardsDeck = document.querySelector('.deck');
@@ -291,23 +281,136 @@ function playSounds(sound) {
 	}
 }
 
+// sounds:
+// card match
+let audio1 = new Audio;
+// game win
+let audio2 = new Audio;
+// card mismatch 1
+let audio3 = new Audio;
+// card mismatch 2
+let audio4 = new Audio;
+// game start
+let audio5 = new Audio;
+// game loss
+let audio6 = new Audio;
+
 function sfxSelect(evt) {
 	switch (evt.target.value) {
 	case '2chainz':
-		audio1.src = 'media/2chainz_4.mp3';
-		audio2.src = 'media/2chainz_tellem.mp3';
-		audio3.src = 'media/2chainz_tru.mp3';
-		audio4.src = 'media/2chainz_unh3.mp3';
-		audio5.src = 'media/2chainz_whistle.mp3';
-		audio6.src = 'media/2chainz_yeah2.mp3';
+		audio1.src = 'media/2chainz_tru.mp3';
+		audio2.src = 'media/2chainz_4.mp3';
+		audio3.src = 'media/2chainz_unh3.mp3';
+		audio4.src = 'media/2chainz_tellem.mp3';
+		audio5.src = 'media/2chainz_yeah2.mp3';
+		audio6.src = 'media/2chainz_whistle.mp3';
 		break;
 	case 'abronson':
-		audio1.src = 'media/action_bronsolino.mp3';
-		audio2.src = 'media/action_yeah.mp3';
-		audio3.src = 'media/action_yo.mp3';
-		audio4.src = 'media/actionbronson_istme.mp3';
-		audio5.src = 'media/actionbronson_unh.mp3';
-		audio6.src = 'media/actionbronson_unh.mp3';
+		audio1.src = 'media/action_yeah.mp3';
+		audio2.src = 'media/action_bronsolino.mp3';
+		audio3.src = 'media/actionbronson_unh.mp3';
+		audio4.src = 'media/actionbronson_unh.mp3';
+		audio5.src = 'media/actionbronson_istme.mp3';
+		audio6.src = 'media/action_yo.mp3';
+		break;
+	case 'bigsean':
+		audio1.src = 'media/bigsean_okay.mp3';
+		audio2.src = 'media/bigsean_unhunh.mp3';
+		audio3.src = 'media/bigsean_whoa.mp3';
+		audio4.src = 'media/bigsean_holdup2.mp3';
+		audio5.src = 'media/bigsean_doit.mp3';
+		audio6.src = 'media/bigsean_stop.mp3';
+		break;
+	case 'birdman':
+		audio1.src = 'media/birdman_6.mp3';
+		audio2.src = 'media/birdman_10.mp3';
+		audio3.src = 'media/birdman_1.mp3';
+		audio4.src = 'media/birdman_4.mp3';
+		audio5.src = 'media/birdman_birdman.mp3';
+		audio6.src = 'media/birdman_16.mp3';
+		break;
+	case 'khaled':
+		audio1.src = 'media/khaled_majorkey3.mp3';
+		audio2.src = 'media/khaled_wethebest.mp3';
+		audio3.src = 'media/khaled_blessup2.mp3';
+		audio4.src = 'media/khaled_anotherone.mp3';
+		audio5.src = 'media/djkhaled_2.mp3';
+		audio6.src = 'media/khaled_theydontwant.mp3';
+		break;
+	case 'diddy':
+		audio1.src = 'media/diddy_6.mp3';
+		audio2.src = 'media/diddy_4.mp3';
+		audio3.src = 'media/diddy_3.mp3';
+		audio4.src = 'media/diddy_5.mp3';
+		audio5.src = 'media/diddy_1.mp3';
+		audio6.src = 'media/diddy_7.mp3';
+		break;
+	case 'drake':
+		audio1.src = 'media/drake_yeahyuh3.mp3';
+		audio2.src = 'media/drake_3.mp3';
+		audio3.src = 'media/drake_2.mp3';
+		audio4.src = 'media/drake_5.mp3';
+		audio5.src = 'media/drake_4.mp3';
+		audio6.src = 'media/drake_worst.mp3';
+		break;
+	case 'gucci':
+		audio1.src = 'media/gucci_1.mp3';
+		audio2.src = 'media/gucci_4.mp3';
+		audio3.src = 'media/gucci_14.mp3';
+		audio4.src = 'media/gucci_14.mp3';
+		audio5.src = 'media/gucci_9.mp3';
+		audio6.src = 'media/gucci_8.mp3';
+		break;
+	case 'jayz':
+		audio1.src = 'media/jayz_1.mp3';
+		audio2.src = 'media/jayz5.mp3';
+		audio3.src = 'media/jayz8.mp3';
+		audio4.src = 'media/jayz_woo.mp3';
+		audio5.src = 'media/jayz_9.mp3';
+		audio6.src = 'media/jayz_7.mp3';
+		break;
+	case 'weezy':
+		audio1.src = 'media/weezy_17.mp3';
+		audio2.src = 'media/weezy_29.mp3';
+		audio3.src = 'media/weezy_14.mp3';
+		audio4.src = 'media/weezy_16.mp3';
+		audio5.src = 'media/weezy_31.mp3';
+		audio6.src = 'media/weezy_25.mp3';
+		break;
+	case 'tip':
+		audio1.src = 'media/ti_5.mp3';
+		audio2.src = 'media/ti_3.mp3';
+		audio3.src = 'media/ti_2.mp3';
+		audio4.src = 'media/ti_2.mp3';
+		audio5.src = 'media/ti_32.mp3';
+		audio6.src = 'media/ti_22.mp3';
+		break;
+	case 'takeoff':
+		audio1.src = 'media/takeoff_ayy.mp3';
+		audio2.src = 'media/takeoff_money.mp3';
+		audio3.src = 'media/takeoff_ugh.mp3';
+		audio4.src = 'media/takeoff_woo.mp3';
+		audio5.src = 'media/takeoff_takeoff.mp3';
+		audio6.src = 'media/takeoff_damn.mp3';
+		break;
+	case 'tscott':
+		audio1.src = 'media/travis_scott_dope.mp3';
+		audio2.src = 'media/travis_scott_its_lit.mp3';
+		audio3.src = 'media/travis_scott_ohh.mp3';
+		audio4.src = 'media/travis_scott_skrt.mp3';
+		audio5.src = 'media/travis_scott_straight_up.mp3';
+		audio6.src = 'media/travis_scott_straight_up_two.mp3';
+		break;
+	case 'youngthug':
+		audio1.src = 'media/youngthug_phoo.mp3';
+		audio2.src = 'media/youngthug_boss.mp3';
+		audio3.src = 'media/youngthug_ish.mp3';
+		audio4.src = 'media/youngthug_wha.mp3';
+		audio5.src = 'media/youngthug_ew.mp3';
+		audio6.src = 'media/youngthug_git.mp3';
 		break;
 	}
 }
+
+// preload first sound
+audio1.load();
