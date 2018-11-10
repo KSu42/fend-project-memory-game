@@ -295,6 +295,7 @@ let audio5 = new Audio();
 // game loss
 let audio6 = new Audio();
 
+// eslint-disable-next-line no-unused-vars
 function sfxSelect(evt) {
 	switch (evt.target.value) {
 	case '2chainz':
