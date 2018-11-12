@@ -411,7 +411,6 @@ function sfxSelect(evt) {
 		audio6.src = 'media/youngthug_git.mp3';
 		break;
 	}
+	// preload first sound
+	audio1.load();
 }
-
-// preload first sound
-audio1.load();
